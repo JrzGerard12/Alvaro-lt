@@ -12,7 +12,7 @@ def atras(user_id):
     atras = InlineKeyboardMarkup([[InlineKeyboardButton(text='𝘼𝙩𝙧𝙖𝙨',callback_data=f'atras:{user_id}')]])
     return atras
 
-perfil_text = '''<b>あ » Pepito Chk | Perfil
+perfil_text = '''<b>あ » Chk | Perfil
 
 ↯ » id: <code>{}</code>
 ↯ » Username: @{}

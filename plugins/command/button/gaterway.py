@@ -5,29 +5,23 @@ from paquetes.plantillas import atras
 def gates_coman(client, message):
     message.edit_message_text('''<b>あ » Tools 🐉
 
-↯ » Status    » Free
 ↯ » Type    » <i>Stripe Auth</i>
 ↯ » Cmmd    » $au
 ↯ » Format   » <code>$au cc|mm|yy|cvc</code>
 ━━
-↯ » Status    » Free
-↯ » Type    » <i>Paypal</i>
-↯ » Cmmd    » $pp
+↯ » Type    » <i>Braintree Charged $1</i>
+↯ » Cmmd    » $b3
 ↯ » Format   » <code>$pp cc|mm|yy|cvc</code>
 ━━
-↯ » Status    » Free
-↯ » Type    » <i>Braintree Auth Avs</i>
+↯ » Type    » <i>Braintree ccn Avs</i>
 ↯ » Cmmd    » $chk
 ↯ » Format   » <code>$chk cc|mm|yy|cvc</code>
 ━━
-↯ » Status    » Free
-↯ » Type    » <i>Payflow ccn</i>
-↯ » Cmmd    » $pf
+↯ » Type    » <i>Braintee Masive Checking</i>
+↯ » Cmmd    » $mass
 ↯ » Format   » <code>$pf cc|mm|yy|cvc</code> 
 ━━
-↯ » Status    » Free
-↯ » Type    » <i>Payflow ccn</i>
-↯ » Cmmd    » $pfw
-↯ » Format   » <code>$pfw cc|mm|yy|cvc</code> 
-                        
+↯ » Type    » <i>Ubdate</i>
+↯ » Cmmd    » $
+↯ » Format   » <code>$ cc|mm|yy|cvc</code>                         
 ━━━━━━━━━━━</b>''',reply_markup=atras(message.from_user.id))

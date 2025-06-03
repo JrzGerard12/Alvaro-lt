@@ -6,7 +6,7 @@ import datetime
 @Client.on_callback_query(filters.regex("perfi"))
 def perfil_cmon(client, m):
     try:
-        perfil_text = '''<b>あ » Pepito Chk | Perfil
+        perfil_text = '''<b>あ » Chk | Perfil
 
 ↯ » id: <code>{}</code>
 ↯ » Username: @{}

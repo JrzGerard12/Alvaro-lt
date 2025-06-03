@@ -8,7 +8,7 @@ class PepitoBot():
             "PepitoBot",
             api_id    = 24648014 ,
             api_hash  = '3575a0f1524c2a08cc297fbd5355e318',
-            bot_token = '7666317498:AAG4Km53zPkggVSB_BbwFc0ZctBe-xMoAMM,
+            bot_token = '7666317498:AAG4Km53zPkggVSB_BbwFc0ZctBe-xMoAMM',
             plugins   =  dict(root="plugins"))
 
         @self.app.on_callback_query()

@@ -6,8 +6,8 @@ class PepitoBot():
     def __init__(self):
         self.app = Client(
             "PepitoBot",
-            api_id    = 24648014 ,
-            api_hash  = '3575a0f1524c2a08cc297fbd5355e318',
+            api_id    = 28463065 ,
+            api_hash  = '9fe32a7769cbee12d7b2f49a9fea22a0',
             bot_token = '7666317498:AAG4Km53zPkggVSB_BbwFc0ZctBe-xMoAMM',
             plugins   =  dict(root="plugins"))
 

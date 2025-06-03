@@ -21,13 +21,13 @@ def gates_coman(client, message):
 ↯ » Format   » <code>$chk cc|mm|yy|cvc</code>
 ━━
 ↯ » Status    » Free
-↯ » Type    » <i>Autorize.Net Charged $5.00</i>
-↯ » Cmmd    » $ac
-↯ » Format   » <code>$ac cc|mm|yy|cvc</code> 
+↯ » Type    » <i>Payflow ccn</i>
+↯ » Cmmd    » $pf
+↯ » Format   » <code>$pf cc|mm|yy|cvc</code> 
 ━━
 ↯ » Status    » Free
-↯ » Type    » <i>APayeezy Charged $50.00</i>
-↯ » Cmmd    » $pz
-↯ » Format   » <code>$pz cc|mm|yy|cvc</code> 
+↯ » Type    » <i>Payflow ccn</i>
+↯ » Cmmd    » $pfw
+↯ » Format   » <code>$pfw cc|mm|yy|cvc</code> 
                         
 ━━━━━━━━━━━</b>''',reply_markup=atras(message.from_user.id))

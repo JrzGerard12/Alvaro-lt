@@ -39,7 +39,7 @@ def mc(client, m):
     for card in cards:
         try:
             # Usar regex para dividir por |, /, ,, -, +, ', o :
-            parts = re.split(r'[|/,+:-\']', card.strip())
+            parts = re.split(r'[|/,+:\'-]', card.strip())
             # Asegurarse de que hay exactamente 4 partes: cc, mes, ano, cvv
             if len(parts) != 4:
                 raise ValueError("Formato de tarjeta inválido")

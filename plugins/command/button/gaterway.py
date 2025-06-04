@@ -11,7 +11,7 @@ def gates_coman(client, message):
 ━━
 ↯ » Type    » <i>Braintree Charged $1</i>
 ↯ » Cmmd    » $b3
-↯ » Format   » <code>$pp cc|mm|yy|cvc</code>
+↯ » Format   » <code>$b3 cc|mm|yy|cvc</code>
 ━━
 ↯ » Type    » <i>Braintree ccn Avs</i>
 ↯ » Cmmd    » $chk
@@ -19,7 +19,7 @@ def gates_coman(client, message):
 ━━
 ↯ » Type    » <i>Braintee Masive Checking</i>
 ↯ » Cmmd    » $mass
-↯ » Format   » <code>$pf cc|mm|yy|cvc</code> 
+↯ » Format   » <code>$mass cc|mm|yy|cvc</code> 
 ━━
 ↯ » Type    » <i>Ubdate</i>
 ↯ » Cmmd    » $

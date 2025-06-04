@@ -4,7 +4,7 @@ import time
 from srca.configs import addCommand
 import requests
 
-@addCommand('au')
+@addCommand('bt')
 def mc(client, m):
     # Lista de usuarios autorizados
     ALLOWED_USERS = [338411613, 7389519750, 5914801650]
@@ -29,7 +29,7 @@ def mc(client, m):
     cc_com = '{}|{}|{}|{}'.format(ccs[0], ccs[1], ccs[2], ccs[3])
 
     # Mensaje inicial de procesamiento
-    new = m.reply(f'''<b>あ Stripe Auth
+    new = m.reply(f'''<b>あ Braintree
 
 • Cc: <code>{cc_com}</code>      
 • Status: Processing... [ ☃️ ]
@@ -43,7 +43,7 @@ def mc(client, m):
         fin = time.time()
 
         # Mensaje final
-        texto = f'''<b>あ Stripe Auth
+        texto = f'''<b>あ Braintree
 
 • Cc: <code>{cc_com}</code>
 • Status: {chk[0]}
@@ -67,7 +67,7 @@ def mc(client, m):
 
     except Exception as e:
         fin = time.time()
-        new.edit_text(f'''<b>あ Stripe Auth
+        new.edit_text(f'''<b>あ Braintree 
 
 • Cc: <code>{cc_com}</code>
 • Status: Error

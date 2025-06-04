@@ -99,7 +99,7 @@ class ConfigsPAge:
         return self.bear_end
     
 correlationid = secrets.token_hex(16)
-class myb3:
+class Braintree2:
     def main(self,card):
         try: 
             self.session = Session()

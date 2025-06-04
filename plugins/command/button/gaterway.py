@@ -5,9 +5,9 @@ from paquetes.plantillas import atras
 def gates_coman(client, message):
     message.edit_message_text('''<b>あ » Tools 🐉
 
-↯ » Type    » <i>Stripe Auth</i>
-↯ » Cmmd    » $au
-↯ » Format   » <code>$au cc|mm|yy|cvc</code>
+↯ » Type    » <i>Braintree </i>
+↯ » Cmmd    » $bt
+↯ » Format   » <code>$bt cc|mm|yy|cvc</code>
 ━━
 ↯ » Type    » <i>Braintree Charged $1</i>
 ↯ » Cmmd    » $b3

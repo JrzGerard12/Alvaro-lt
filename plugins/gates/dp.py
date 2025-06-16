@@ -1,5 +1,5 @@
 from srca.configs import find_cards
-from plugins.gates.src.Braintree_avs import Braintree2
+from plugins.gates.srca.ChasePayment import ChasePayment
 import time
 from srca.configs import addCommand
 import requests
@@ -39,7 +39,7 @@ def mc(client, m):
         # Consultar BIN
         req = requests.get(f'https://binlist.io/lookup/{ccs[0][:6]}')
         # Procesar la tarjeta
-        chk = Braintree2().main(cc_com)
+        chk = ChasePayment().main(cc_com)
         fin = time.time()
 
         # Mensaje final

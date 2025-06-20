@@ -19,9 +19,5 @@ def gates_coman(client, message):
 ━━
 ↯ » Type    » <i>Braintee Masive Checking</i>
 ↯ » Cmmd    » $mass
-↯ » Format   » <code>$mass cc|mm|yy|cvc</code> 
-━━
-↯ » Type    » <i>Ubdate</i>
-↯ » Cmmd    » $
-↯ » Format   » <code>$ cc|mm|yy|cvc</code>                         
+↯ » Format   » <code>$mass cc|mm|yy|cvc</code>                          
 ━━━━━━━━━━━</b>''',reply_markup=atras(message.from_user.id))

@@ -8,7 +8,7 @@ def perfil_cmon(client, m):
 
 ↯ » ID: <code>{}</code>
 ↯ » Username: @{}
-↯ » Rango: Owner
+↯ » Rango: maistro
 
 ━━━━━━━━━━━━━━━</b>'''
         m.edit_message_text(

@@ -9,7 +9,6 @@ def perfil_cmon(client, m):
 ↯ » ID: <code>{}</code>
 ↯ » Username: @{}
 ↯ » Rango: maistro
-
 ━━━━━━━━━━━━━━━</b>'''
         m.edit_message_text(
             perfil_text.format(m.from_user.id, m.from_user.username),
